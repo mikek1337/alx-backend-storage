@@ -1,2 +1,2 @@
 // update school collection name attribute
-db.school.update({name:"Holberton school"},{$setOnInsert:{address:"972 Mission Street"}},{upset:true})
+db.school.updateMany({name:"Holberton school"},{$set:{address:"972 Mission street"}})
