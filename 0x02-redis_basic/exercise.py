@@ -31,7 +31,7 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable) -> Union[str, int, float, bytes]:
+    def get(self, key: str, fn: Callable = None) -> Union[str, int, float, bytes]:
         """get data from redis"""
         data = self._redis.get(key)
         return fn(data) if fn is not None else data
@@ -42,5 +42,5 @@ class Cache:
 
     def get_int(self, key: str) -> int:
         """get data from redis"""
-       return self.get(key, lambda d: int(d))
+        return self.get(key, lambda d: int(d))
 
