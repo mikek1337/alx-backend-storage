@@ -33,7 +33,7 @@ def call_history(method: Callable) -> Callable:
 
 def replay(fn: Callable):
     """display the history of calls of a particular function"""
-    r = redis.Redis()
+    r =  getattr(fn.__self__, '_redis', None)
     fn_name = fn.__qualname__
     count = r.get(fn_name).decode('utf-8')
     inputs = r.lrange(fn_name + ":inputs", 0, -1)
